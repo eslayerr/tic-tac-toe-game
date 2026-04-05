@@ -2,6 +2,28 @@ body {
     font-family:sans-serif;
       text-align:center;
     margin-top:50px;
+    background:#f0f0f0;
+    background-image: url("baground-game.jpg");
+    background-size: cover;
+}
+
+
+h2{
+    font-size:28px;
+    margin-bottom:5px;
+      text-transform: lowercase;
+
+
+
+}
+
+
+
+#info{
+    font-size:16px;
+    margin-bottom:10px;
+    color:#fff;
+      text-shadow: 1px 1px 2px #000;
 }
 
 #box1{
@@ -14,8 +36,13 @@ body {
 .cell {
     width: 80px;
     height:80px;
-    font: size 32px;
+    font-size :32px;
+    font-weight:bold;
      cursor:pointer;
+        border:  2px solid #fff;
+        border-radius: 10px;
+
+       background: rgba(255, 255, 255, 0.3);
     border: 2px solid #000;
     background:#fff;
 
@@ -27,4 +54,34 @@ body {
 #again {
     padding:5px 12px;
     font-size:14px;
+}
+
+
+#again {
+       margin-top: 15px;
+    padding: 8px;
+       font-size:14px;
+    border:2px solid #fff;
+     border-radius: 5px;
+     background: rgba(0,0,0,0.4);
+     color:#fff;
+     cursor: hover;
+     
+       
+}
+
+
+#again:hover {
+    background: rgba(0,0,0,0.6);
+}
+
+
+#credit {
+    position:fixed;
+    bottom:12px;
+    right: 15px;
+    font-size: 15px;
+    color:#fff;
+
+    
 }
