@@ -83,5 +83,33 @@ h2{
     font-size: 15px;
     color:#fff;
 
-    
+
 }
+
+
+
+#score {
+    font-size:18px;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+
+
+
+}
+
+
+
+
+.xcolor{ color:red;}
+.ocolor{ color:blue;}
+
+
+
+.winner {
+    background:whitesmoke;
+    border: 3px solid gold;
+}
+
+

@@ -3,6 +3,10 @@ var turn = 'X' ;
 var going = true;
 
 
+   var xcount =0;
+   var ocount =0;
+
+
 var lines = [
     [0,1,2],[3,4,5],[6,7,8],
     [0,3,6],[1,4,7],[2,5,8],
@@ -11,6 +15,10 @@ var lines = [
 
 var area = document.getElementById('box1');
 var txt = document.getElementById('info');
+
+
+   var xs = document.getElementById('xs');
+   var os = document.getElementById('os');
 
 
 
@@ -37,11 +45,31 @@ function picked(){
 
     titles[i] = turn;
     this.innerHTML = turn;
+   
+
+    if(turn=='X'){
+        this.classList.add('xcolor');
+    }else{
+        this.classList.add('ocolor');
+    }
+
+
 
     var w = won();
     if(w){
         txt.textContent = 'Player ' + w + ' wins!';
         going=false;
+
+        if(w=='X'){
+            xcount++;
+            xs.textContent = 'X: ' + xcount;
+        } else{
+            ocount++;
+            os.textContent = 'O: ' + ocount;
+        }
+
+
+        highlightWin();
         return;
 
     }
@@ -68,6 +96,20 @@ function picked(){
 }
 
 
+function highlightWin(){
+    for(var k = 0 ; k<lines.length; k++){
+        var a=lines[k][0], b=lines[k][1], c=lines[k][2];
+    if(titles[a]!='' && titles[a]==titles[b] && titles[b]==titles[c]){
+        var btns = document.querySelectorAll('.cell');
+            btns[a].classList.add('winner');
+            btns[b].classList.add('winner');
+              btns[c].classList.add('winner');
+    }
+
+    }
+}
+
+
 
 
 function won(){
@@ -89,6 +131,7 @@ document.getElementById('again').onclick = function(){
     txt.textContent = 'Player X goes first';
     setup();
 }
+
 
 setup();
 
