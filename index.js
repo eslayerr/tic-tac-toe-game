@@ -3,40 +3,40 @@ var turn = 'X' ;
 var going = true;
 
 
-   var xcount =0;
-   var ocount =0;
+   var xwinss =0;
+   var owinss =0;
 
 
-var lines = [
+var combos = [
     [0,1,2],[3,4,5],[6,7,8],
     [0,3,6],[1,4,7],[2,5,8],
     [0,4,8],[2,4,6]
 ];
 
-var area = document.getElementById('box1');
-var txt = document.getElementById('info');
+var gridz = document.getElementById('wrap');
+var txt = document.getElementById('msg');
 
 
-   var xs = document.getElementById('xs');
-   var os = document.getElementById('os');
+   var x_score = document.getElementById('xs');
+   var o_score = document.getElementById('os');
 
 
 
-function setup(){
-    area.innerHTML = '';
+function load(){
+    gridz.innerHTML = '';
     for(var i=0; i<9; i++){
         var b = document.createElement('button');
-        b.className = 'cell';
+        b.className = 'sq';
            b.setAttribute('data-i',i);
-        b.onclick= picked ;
-        area.appendChild(b);
+        b.onclick= tap ;
+        gridz.appendChild(b);
 
 
     }
 }
 
 
-function picked(){
+function tap(){
     var i = this.getAttribute('data-i');
     if(!going) return;
     if(titles[i]!='') return;
@@ -55,21 +55,26 @@ function picked(){
 
 
 
-    var w = won();
+    var w = checkifwon();
     if(w){
         txt.textContent = 'Player ' + w + ' wins!';
         going=false;
 
+
+
+        document.getElementById('poptext').textContent = 'Player ' + w + ' wins!';
+        document.getElementById('popsupp').style.display = 'block';
+
         if(w=='X'){
-            xcount++;
-            xs.textContent = 'X: ' + xcount;
+            xwinss++;
+            x_score.textContent = 'X: ' + xwinss;
         } else{
-            ocount++;
-            os.textContent = 'O: ' + ocount;
+            owins++;
+            o_score.textContent = 'O: ' + owinss;
         }
 
 
-        highlightWin();
+        markWin();
         return;
 
     }
@@ -77,13 +82,13 @@ function picked(){
 
 
 
-    var full = true;
+    var done = true;
     for(var j = 0; j<titles.length; j++){
-        if(titles[j]=='') { full=false; break; }
+        if(titles[j]=='') { done=false; break; }
     }
 
 
-    if(full){
+    if(done){
         txt.textContent = 'Draw!';
         going = false; 
         return;
@@ -96,11 +101,11 @@ function picked(){
 }
 
 
-function highlightWin(){
-    for(var k = 0 ; k<lines.length; k++){
-        var a=lines[k][0], b=lines[k][1], c=lines[k][2];
+function markWin(){
+    for(var k = 0 ; k<combos.length; k++){
+        var a=combos[k][0], b=combos[k][1], c=combos[k][2];
     if(titles[a]!='' && titles[a]==titles[b] && titles[b]==titles[c]){
-        var btns = document.querySelectorAll('.cell');
+        var btns = document.querySelectorAll('.sq');
             btns[a].classList.add('winner');
             btns[b].classList.add('winner');
               btns[c].classList.add('winner');
@@ -112,9 +117,9 @@ function highlightWin(){
 
 
 
-function won(){
-    for (var k=0; k<lines.length; k++){
-        var a = lines[k][0], b=lines[k][1], c=lines[k][2];
+function checkifwon(){
+    for (var k=0; k<combos.length; k++){
+        var a = combos[k][0], b=combos[k][1], c=combos[k][2];
         if(titles[a]!='' && titles[a]==titles[b] && titles[b]==titles[c]){
           return titles[a];
         }
@@ -124,16 +129,20 @@ function won(){
 }
 
 
-document.getElementById('again').onclick = function(){
+document.getElementById('rst').onclick = function(){
     titles = ['','','','','','','','',''];
     turn = 'X';
     going = true;
     txt.textContent = 'Player X goes first';
-    setup();
+
+
+
+    document.getElementById('popsupp').style.display = 'none';
+    load();
 }
 
 
-setup();
+load();
 
 
 

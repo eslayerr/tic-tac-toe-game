@@ -10,17 +10,28 @@
 
 
 <h2>Tic Tac Toe</h2>
-  <div id="score">
+  <div id="pts">
     <span id="xs"> X:0</span>
     <span id="os">O:0</span>
 
   </div>
 
 
-<p id = "info">Player x goes first</p>    
-<div id="box1">
+
+
+
+  <div id="popsupp">
+    <div id="popupboxx">
+        <p id="poptext">Player X wins!</p>
+        <button onclick="document.getElementById('popsupp').style.display='none'; document.getElementById('again').click()">Play again</button>
+    </div>
+  </div>
+
+
+<p id = "msg">Player x goes first</p>    
+<div id="wrap">
 </div><br>
-<button id="again">Restart</button>
+<button id="rst">Restart</button>
 
   <div id="credit">
     <p>created by luvya :)</p>
